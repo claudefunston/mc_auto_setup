@@ -24,7 +24,7 @@ From this repository, download _only_ the file `Vagrantfile`. Save it alone in a
 Activate the VM by typing
 `vagrant up`
 
-Vagrant will provision the machine. Once you have the command prompt back again, log on to your new box with
+Vagrant will provision the machine. Once you have the command prompt back again (Vagrent will show lots out output), log on to your new box with
 
 `vagrant ssh`
 
@@ -32,10 +32,42 @@ If asked, the default password is `vagrant`.
 
 ### Minecraft
 
-Vagrant has already downloaded this repository for you. To get Minecraft going, enter
+Vagrant has already downloaded this repository for you. (One optional step here is to change the default RCON password; see appendix for locations) 
+
+To get Minecraft going, enter
 
 `cd mc_auto_setup && sh setup_main.sh`
 
 That's it!
 
-## Operating the server
+Make sure Minecraft is running with
+
+`sudo systemctl status minecraft`.
+
+To connect, find your IP address with `ifconfig`. NOTE: Because of the configuration of the VM, you will need to use the IP address listed under `eth1`, not `eth0`. (More advanced Vagrant/VirtualBox settings can change this)
+
+## Operating the Server
+
+NB: To be updated. the aliase are not being created correctly in the scripts. FOR NOW either
+```
+cd /opt/minecraft/tools/mcrcon/
+mcron
+```
+or set an alias:
+```
+alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"
+```
+PLANNED
+
+Now that we can connect, aside from stopping/starting the service our main control is RCON. Run `mcrcon` to enter a console from which you can enter any server commands.
+
+### Planned Features
+
+* RCON can send commands to the server but can't read from the console. Adding `screen` support back to the system service would be nice
+* Automated backups
+* SFTP configuration for sharing world files
+* Some redundancy checks on the bash scripts. This would be to rerun scripts without making a new VM
+* Consolidate references to RCON password; create environment variable
+* Fix aliases!!
+
+### Fixed Parameters
