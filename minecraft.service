@@ -1,0 +1,19 @@
+[Unit]
+Description=Minecraft Server
+After=network.Target
+
+[Service]
+User=minecraft
+Nice=1
+KillMode=none
+SuccessExitstatus=0 1
+ProtectHome=true
+ProtectSystem=full
+PrivateDevices=true
+NoNewPrivileges=true
+WorkingDirectory=/opt/minecraft/server
+ExecStart=/usr/bin/java -Xmx4G -Xms1024M -jar server.jar nogui
+ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P McRcOnPw stop
+
+[Install]
+WantedBy=multi-user.target
