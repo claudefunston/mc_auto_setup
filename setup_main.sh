@@ -1,0 +1,16 @@
+
+sudo apt update
+sudo apt -y install git build-essential
+sudo apt-install -y openjdk-17-jre-headless
+
+sudo useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
+
+sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
+
+sudo su -c 'sh ./setup_minecraft.sh' minecraft
+
+sudo chown minecraft server.properties
+
+sudo cp server.properties /opt/minecraft/server/
+
+alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"
