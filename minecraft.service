@@ -1,12 +1,12 @@
 [Unit]
 Description=Minecraft Server
-After=network.Target
+After=network.target
 
 [Service]
 User=minecraft
 Nice=1
 KillMode=none
-SuccessExitstatus=0 1
+SuccessExitStatus=0 1
 ProtectHome=true
 ProtectSystem=full
 PrivateDevices=true
