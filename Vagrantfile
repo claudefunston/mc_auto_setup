@@ -8,10 +8,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "8192"
+    vb.cpus = ="2"
   end
   config.vm.provision "shell", inline: <<-SHELL
-    echo "Downloading Minecraft setups scripts ..."
     git clone https://github.com/claudefunston/mc_auto_setup
-    echo "Done"
   SHELL
 end

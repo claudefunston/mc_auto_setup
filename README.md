@@ -75,7 +75,7 @@ Now that we can connect, aside from stopping/starting the service our main contr
 | Parameter | Location | Default  | Comments |
 |-----------|---------------|----------|----------|
 | VM system memory |Vagrantfile|8192M|Change dependant on your physical system|
-|VM core allocation|Vagrantfile|1 core|Minecraft is not multi-threaded; increasing this will likely not change performance|
+|VM core allocation|Vagrantfile|2 cores|Minecraft is not multi-threaded; increasing this will likely not change performance. Setting at 2 in case other processes can leverage it|
 |Min Minecraft memory |`minecraft.service`|1024M|Lower limit. Do not change|
 |Max Minecraft Memory|`minecraft.service`|4G|Observationally, Minecraft is more CPU-intensive than memory. 2-3G is plenty so we are safe here. Make sure this is lower than allocated VM memory|
 |RCON Password|`server.properties`; `setup_main.sh`; `minecraft.service`|McRcOnPw|For future, this should be set once as an environment variable|
