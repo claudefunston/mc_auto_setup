@@ -83,3 +83,4 @@ Now that we can connect, aside from stopping/starting the service our main contr
 |Minecraft main port|`server.properties`|25565||
 |RCON port|`server.properties`|25575|Passing no `-p` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
 |RCON IP|None|`localhost` (127.0.0.1)|See comments above. Again, the default value for `-H` in `mcrcon` is localhost; there is no need to change this|
+|VM guest OS|Vagrantfile|`hashicorp/bionic64`|Ubuntu 18.04 64 bit|
