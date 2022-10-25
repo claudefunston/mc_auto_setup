@@ -81,6 +81,6 @@ Now that we can connect, aside from stopping/starting the service our main contr
 |RCON Password|`server.properties`; `setup_main.sh`; `minecraft.service`|McRcOnPw|For future, this should be set once as an environment variable|
 |`SERVER_URL`|`minecraft_user_scripts.sh`|https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar|Downloads v1.19.2|
 |Minecraft main port|`server.properties`|25565||
-|RCON port|`server.properties`|25575|Passing no `-p` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
+|RCON port|`server.properties`; `setup_main.sh`|25575|Passing no `-p` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified. The reference to `setup_main.sh` opens the port via `ufw`.|
 |RCON IP|None|`localhost` (127.0.0.1)|See comments above. Again, the default value for `-H` in `mcrcon` is localhost; there is no need to change this|
 |VM guest OS|Vagrantfile|`hashicorp/bionic64`|Ubuntu 18.04 64 bit|
