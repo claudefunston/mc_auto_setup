@@ -1,25 +1,21 @@
 
-sudo apt update
-sudo apt -y install git build-essential
-sudo apt -y install openjdk-17-jre-headless
+sudo -s -- <<EOF
+    apt update
+    apt install -y git build-essential
+    apt install -y openjdk-17-jre-headless
 
-sudo useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
-
-sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
+    useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
+    cp ./minecraft.service /etc/systemd/system/minecraft.service
+EOF
 
 sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
-sudo chown minecraft server.properties
+sudo -s -- <<EOF
+    cp server.properties /opt/minecraft/server/
+    chown minecraft /opt/minecraft/server/server.properties
 
-sudo cp server.properties /opt/minecraft/server/
+    ufw allow 25565/tcp
 
-echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> ~/.bashrc
-sudo echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> /opt/minecraft/.bashrc
-
-sudo ufw allow 25565/tcp
-
-sudo source ~/.bashrc
-sudo source /opt/minecraft/.bashrc
-
-sudo systemctl enable minecraft
-sudo systemctl start minecraft
+    systemctl enable minecraft
+    systemctl start minecraft
+EOF
