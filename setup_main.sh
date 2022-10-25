@@ -13,4 +13,5 @@ sudo chown minecraft server.properties
 
 sudo cp server.properties /opt/minecraft/server/
 
+shopt -s expand_aliases
 alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"
