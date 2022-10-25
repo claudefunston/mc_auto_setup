@@ -1,23 +1,41 @@
 # mc_auto_setup
+## Overview
+A rapidly deployable testbed for creating Minecraft servers. There are two components:
+* A Vagrant setup file to create recreateable, disposable, and safe Virtual Machines
+* A series of Bash scripts to set up the Minecraft server environment and system service
 
-A quick set of bash commands to download an easily controllable Minecraft server.
+With a few clicks, you will be able to connected to a Minecraft instance inside your local machine. Why operate like this? Before deploying Minecraft to your own server, you will likely want to modify settings from the setup here. Because of the disposable nature of the VM, you can make an incremental change to the setup scripts, and run a server install on a fresh machine without replicating any (human) work. 
 
-To set everything up:
-* Clone the repo (`git clone https://github.com/claudefunston/mc_auto_setup`)
-* `cd mc_auto_setup`
-* For best security, you can change the RCON password in these files:
-    * `server.properties` (line 40)
-    * `minecraft.service` (line 16)
-    * `setup_main` (Alias commands)
-        * Note, for future try to condense this using environment variable `MCRCON_PASS` 
-* Now run `sudo sh setup_main.sh`
+This concept goes beyond Minecraft; any other configurations to your server can be similarly upgraded on an incremental, repeatedly testable basis. Because changes are made by script, the process is fundamentally self-documenting. No more "I know I had a command to fix that error, what was it?" -- you added it to your script and it's done right every time you spool up a fresh machine.
 
-And you're ready to go! The scripts don't start up minecraft; as usual kick it off with
-* `sudo systemctl start minecraft` and to enable on startup,
-* `sudo systemctl enable minecraft` if desired
+## Setup
+### Required Software
+Install the following two pieces of software:
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 
-Right away, `systemctl status minecraft` will show helpful information while the server is spooling up. The first time takes a bit longer, but you will see helpful information showing basic status. In particular, look out for RCON listening on port 25575. If it worked, `mcrcon` will bring up the server console with all commands available.
+Choose the appropriate version for your host platform. This author has only tested on Windows
 
-Potential troubleshooting
-* If the server isn't starting (shows errors on `status`), make sure Java is correctly installed with `java -version1`
-* If `mcrcon` shows command not found, take a look at `~/.bashrc` to make sure they are defined. If not, navigtate to `/opt/minecraft/tools/mcrcon/` and launch from there, or define the aliases
+### Initialize VMs
+From this repository, download _only_ the file `Vagrantfile`. Save it alone in any folder you wish. From your favorite terminal, navigate there:
+
+`cd <PATH_TO_VAGRANTFILE>`
+
+Activate the VM by typing
+`vagrant up`
+
+Vagrant will provision the machine. Once you have the command prompt back again, log on to your new box with
+
+`vagrant ssh`
+
+If asked, the default password is `vagrant`.
+
+### Minecraft
+
+Vagrant has already downloaded this repository for you. To get Minecraft going, enter
+
+`cd mc_auto_setup && sh setup_main.sh`
+
+That's it!
+
+## Operating the server

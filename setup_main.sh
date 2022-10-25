@@ -15,3 +15,11 @@ sudo cp server.properties /opt/minecraft/server/
 
 echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> ~/.bashrc
 sudo echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> /opt/minecraft/.bashrc
+
+sudo ufw allow 25565/tcp
+
+sudo source ~/.bashrc
+sudo source /opt/minecraft/.bashrc
+
+sudo systemctl enable minecraft
+sudo systemctl start minecraft
