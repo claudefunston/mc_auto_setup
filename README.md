@@ -51,7 +51,7 @@ To connect, find your IP address with `ifconfig`. NOTE: Because of the configura
 NB: To be updated. the aliase are not being created correctly in the scripts. FOR NOW either
 ```
 cd /opt/minecraft/tools/mcrcon/
-mcron
+mcrcon
 ```
 or set an alias:
 ```
@@ -70,4 +70,16 @@ Now that we can connect, aside from stopping/starting the service our main contr
 * Consolidate references to RCON password; create environment variable
 * Fix aliases!!
 
-### Fixed Parameters
+### Variables
+
+| Parameter | Location | Default  | Comments |
+|-----------|---------------|----------|----------|
+| VM system memory |Vagrantfile|8192M|Change dependant on your physical system|
+|VM core allocation|Vagrantfile|1 core|Minecraft is not multi-threaded; increasing this will likely not change performance|
+|Min Minecraft memory |`minecraft.service`|1024M|Lower limit. Do not change|
+|Max Minecraft Memory|`minecraft.service`|4G|Observationally, Minecraft is more CPU-intensive than memory. 2-3G is plenty so we are safe here. Make sure this is lower than allocated VM memory|
+|RCON Password|`server.properties`; `setup_main.sh`; `minecraft.service`|McRcOnPw|For future, this should be set once as an environment variable|
+|`SERVER_URL`|`minecraft_user_scripts.sh`|https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar|Downloads v1.19.2|
+|Minecraft main port|`server.properties`|25565||
+|RCON port|`server.properties`|25575|Passing no `-p` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
+|RCON IP|None|`localhost` (127.0.0.1)|See comments above. Again, the default value for `-H` in `mcrcon` is localhost; there is no need to change this|
