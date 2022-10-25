@@ -13,4 +13,5 @@ sudo chown minecraft server.properties
 
 sudo cp server.properties /opt/minecraft/server/
 
-alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"
+echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> ~/.bashrc
+sudo echo 'alias mcrcon="/opt/minecraft/tools/mcrcon/mcrcon -p McRcOnPw"' >> /opt/minecraft/.bashrc
