@@ -1,7 +1,7 @@
 
 sudo apt update
 sudo apt -y install git build-essential
-sudo apt-install -y openjdk-17-jre-headless
+sudo apt -y install openjdk-17-jre-headless
 
 sudo useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
 
