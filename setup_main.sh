@@ -1,12 +1,15 @@
+echo "Welcome to Minecraft Auto Setup"
 
-sudo -s -- <<EOF
-    apt update
-    apt install -y git build-essential
-    apt install -y openjdk-17-jre-headless
+read -p "Would you like to install packages? [y/N]" pk
+case $pk in [Yy]* )
+    sudo apt install -y git build-essential openjdk-17-jre-headless; break;;
+esac
 
-    useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft
-    cp ./minecraft.service /etc/systemd/system/minecraft.service
-EOF
+echo "Creating Minecraft user"
+
+useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || "User already exists ... skipping this step"
+
+cp ./minecraft.service /etc/systemd/system/minecraft.service
 
 sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
