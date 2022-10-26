@@ -1,6 +1,6 @@
 echo "--Welcome to Minecraft Auto Setup--\n\n"
 
-read -p "\n\nWould you like to install packages? [y/N]\n\n" pk
+read -p "Would you like to install packages? [y/N]" pk
 case $pk in [Yy]* )
     sudo apt install -y git build-essential openjdk-17-jre-headless; break;;
 esac
