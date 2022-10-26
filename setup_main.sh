@@ -1,13 +1,13 @@
-echo "Welcome to Minecraft Auto Setup"
+echo "--Welcome to Minecraft Auto Setup--\n\n"
 
-read -p "Would you like to install packages? [y/N]" pk
+read -p "\n\nWould you like to install packages? [y/N]\n\n" pk
 case $pk in [Yy]* )
     sudo apt install -y git build-essential openjdk-17-jre-headless; break;;
 esac
 
-echo "Creating Minecraft user"
+echo "\n\nCreating Minecraft user"
 
-useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || "User already exists ... skipping this step"
+useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || "User already exists ... skipping this step\n\n"
 
 cp ./minecraft.service /etc/systemd/system/minecraft.service
 
