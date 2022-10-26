@@ -6,7 +6,7 @@ mkdir -p ~/backups
 mkdir -p ~/server
 mkdir -p ~/tools
 
-if[ ! -d ~/tools/mcrcon ] then
+if [ ! -d ~/tools/mcrcon ]; then
     cd ~/tools
     git clone https://github.com/Tiiffi/mcrcon.git
     cd mcrcon
@@ -18,7 +18,7 @@ else
     printf "\n\nmcrcon already present. Skipping compile\n\n"
 fi
 
-if[ ! -f ~/server/server.jar ] then
+if [ ! -f ~/server/server.jar ]; then
     printf "\n\nFetching server.jar and accepting EULA\n\n"
     wget "$SERVER_URL" -P /opt/minecraft/server
     echo "eula=true" >> /opt/minecraft/server/eula.txt

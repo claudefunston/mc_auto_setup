@@ -9,7 +9,7 @@ echo "\n\nCreating Minecraft user"
 
 useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || "User already exists ... skipping this step\n\n"
 
-cp ./minecraft.service /etc/systemd/system/minecraft.service
+sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
 
 sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
