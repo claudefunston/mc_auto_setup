@@ -10,18 +10,18 @@ if [ ! -d ~/tools/mcrcon ]; then
     cd ~/tools
     git clone https://github.com/Tiiffi/mcrcon.git
     cd mcrcon
-    printf "\n\nCompiling mcrcon\n\n"
+    printf "Compiling mcrcon"
     gcc -std=gnu99 -Wall -Wextra -Wpedantic -Os -s -o mcrcon mcrcon.c
 
     chmod +x mcrcon
 else
-    printf "\n\nmcrcon already present. Skipping compile\n\n"
+    printf "mcrcon already present. Skipping compile"
 fi
 
 if [ ! -f ~/server/server.jar ]; then
-    printf "\n\nFetching server.jar and accepting EULA\n\n"
+    printf "Fetching server.jar and accepting EULA"
     wget "$SERVER_URL" -P /opt/minecraft/server
     echo "eula=true" >> /opt/minecraft/server/eula.txt
 else
-    printf "\n\nMinecraft server already present. Skipping download\n\n"
+    printf "Minecraft server already present. Skipping download"
 fi
