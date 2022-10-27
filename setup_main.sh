@@ -17,6 +17,10 @@ sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
 read -p "Please enter a password for RCON" rconpw
 
+sudo sed '$d' server.properties
+
+sudo echo 'rcon.password=$rconpw' >> server.properties
+
 sudo -s -- <<-EOF
     cp server.properties /opt/minecraft/server/
     chown minecraft /opt/minecraft/server/server.properties
