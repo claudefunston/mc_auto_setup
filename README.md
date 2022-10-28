@@ -10,12 +10,12 @@ This concept goes beyond Minecraft; any other configurations to your server can 
 
 ## Setup
 ### Using Vagrant
-If you are bringing your own system, skip ahead to 
+If you are bringing your own system, skip ahead to section Minecraft. Otherwise, install the following:
 
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
 
-Choose the appropriate version for your host platform. This author has only tested on Windows
+Choose the appropriate version for your host platform. This author has only tested on Windows. Vagrant works with other virtualization software, but there are VB-specific sizing options in this particular configuration.
 
 ### Initialize VMs
 From this repository, download _only_ the file `Vagrantfile`. Save it alone in any folder you wish. From your favorite terminal, navigate there:
@@ -25,7 +25,7 @@ From this repository, download _only_ the file `Vagrantfile`. Save it alone in a
 Activate the VM by typing
 `vagrant up`
 
-Vagrant will provision the machine. Once you have the command prompt back again (Vagrent will show lots out output), log on to your new box with
+Vagrant will provision the machine. Once you have the command prompt back again (Vagrent will show various status output), log on to your new box with
 
 `vagrant ssh`
 
@@ -33,7 +33,7 @@ If asked, the default password is `vagrant`.
 
 ### Minecraft
 
-If you are using Vagrant, this repository is already cloned. Otherwise, clone it
+If you are using Vagrant, this repository is already cloned. Otherwise, clone it.
 
 To get Minecraft going, enter
 
@@ -50,12 +50,12 @@ To connect, if you are using Vagrant: use the IP address from the `eth1` interfa
 ### Planned Features
 
 * RCON can send commands to the server but can't read from the console. Adding `screen` support back to the system service would be nice
-    * Note: `minecraft status` does 
+    * Note: `minecraft status` does show the previous 18 lines from the console
 * Automated backups
 * SFTP configuration for sharing world files
 * ~~Some redundancy checks on the bash scripts. This would be to rerun scripts without making a new VM~~ Done, +interactivity
 * ~~Consolidate references to RCON password; create environment variable~~ Done
-* ~~Fix aliases!!~~ Done
+* ~~Fix aliases!!~~ Aliases are created but do not persist after a reboot 
 
 ### Variables
 
