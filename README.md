@@ -45,9 +45,13 @@ Finally, the script has created a file to set an alias and the RCON password: ty
 
 This sets an alias for `mcrcon`, and defines the `MCRCON_PASS` based on what you chose.
 
-To connect, if you are using Vagrant: use the IP address from the `eth1` interface, not `eth0`.
-
 ## Operating the Server
+
+Open up a port to the outside world: for security, we are not enabling this in the scripts:
+
+`sudo ufw allow 25565/tcp`
+
+To connect, if you are using Vagrant: use the IP address from the `eth1` interface, not `eth0`. Otherwise connect as usual.
 
 ### Planned Features
 

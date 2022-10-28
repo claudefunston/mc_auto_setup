@@ -10,8 +10,6 @@ case $pk in [Yy]* )
     sudo apt install -y openjdk-17-jre-headless; break;;
 esac
 
-printf "\nCreating Minecraft user...\n"
-
 useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || true
 
 sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
@@ -21,7 +19,6 @@ sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 printf "\n"
 
 read -p "Enter a password for RCON. 
-
 Please chose a sufficiently secure value: 
 
 " rconpw
