@@ -27,8 +27,8 @@ sudo -s -- <<-EOF
     ufw allow 25565/tcp
 EOF
 
-read -p "Would you like to install required packages? [y/N]" pk
-case $pk in [Yy]* )
+read -p "Would you like to enable and start Minecraft? [y/N]" en
+case $en in [Yy]* )
     sudo -s -- <<-EOF
     systemctl enable minecraft
     systemctl start minecraft
