@@ -41,7 +41,9 @@ To get Minecraft going, enter
 
 Finally, the script has created a file to set an alias and the RCON password: type
 
-`source variables`
+`source vars`
+
+This sets an alias for `mcrcon`, and defines the `MCRCON_PASS` based on what you chose.
 
 To connect, if you are using Vagrant: use the IP address from the `eth1` interface, not `eth0`.
 
