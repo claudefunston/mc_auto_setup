@@ -37,7 +37,7 @@ If you are using Vagrant, this repository is already cloned. Otherwise, clone it
 
 To get Minecraft going, enter
 
-`cd mc_auto_setup && sh setup_main.sh`
+`cd mc_auto_setup && sudo sh setup_main.sh`
 
 Finally, the script has created a file to set an alias and the RCON password: type
 
