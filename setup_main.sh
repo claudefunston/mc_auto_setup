@@ -24,6 +24,9 @@ sudo -s -- <<-EOF
 
     echo "rcon.password=$rconpw" >> server.properties
 
+    echo "eval export RCON_PW=$rconpw" > variables
+    echo "eval export alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> variables
+
     cp server.properties /opt/minecraft/server/
     chown minecraft /opt/minecraft/server/server.properties
 EOF
