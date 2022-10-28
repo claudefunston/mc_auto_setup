@@ -15,7 +15,9 @@ sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
 
 sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
-read -p "\n\nEnter a password for RCON. Please chose a sufficiently secure value" rconpw
+printf "\n"
+
+read -p "Enter a password for RCON. Please chose a sufficiently secure value" rconpw
 
 sudo -s -- <<-EOF
     cp server.properties.setup server.properties
@@ -25,7 +27,7 @@ sudo -s -- <<-EOF
     echo "rcon.password=$rconpw" >> server.properties
 
     echo "eval export RCON_PW=$rconpw" > variables
-    echo "eval export alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> variables
+    echo "eval alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> variables
 
     cp server.properties /opt/minecraft/server/
     chown minecraft /opt/minecraft/server/server.properties
