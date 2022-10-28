@@ -52,4 +52,3 @@ resource-pack-sha1=
 max-world-size=29999984
 rcon.port=25575
 server-port=25565
-rcon.password=

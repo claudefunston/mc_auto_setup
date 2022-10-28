@@ -69,5 +69,5 @@ To connect, if you are using Vagrant: use the IP address from the `eth1` interfa
 |`SERVER_URL`|`minecraft_user_scripts.sh`|https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar|Downloads v1.19.2|
 |Minecraft main port|`server.properties`|25565||
 |RCON port|`server.properties`; `setup_main.sh`|25575|Passing no `-P` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
-|`RCON_PW`|`server.properties`|McRcOnPw|IMPORTANT: This should be changed to a secure password, otherwise vulnerable to brute force attacks. The script will set this as an environment variable as well
+|`RCON_PW`|`server.properties`|None|IMPORTANT: Sete this to a secure value during setup.
 |RCON IP|None|`localhost` (127.0.0.1)|See comments above. Again, the default value for `-H` in `mcrcon` is localhost; there is no need to change this|

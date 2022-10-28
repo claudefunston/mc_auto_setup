@@ -15,10 +15,9 @@ sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
 
 sudo su -c 'sh ./minecraft_user_scripts.sh' minecraft
 
-read -p "Please enter a password for RCON" rconpw
+read -p "Enter a password for RCON. Please chose a sufficiently secure password" rconpw
 
-sudo sed '$d' server.properties
-
+sudu cp server.properties.setup server.properties
 sudo echo 'rcon.password=$rconpw' >> server.properties
 
 sudo -s -- <<-EOF
