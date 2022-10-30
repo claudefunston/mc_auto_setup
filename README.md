@@ -28,7 +28,7 @@ Activate the VM by typing
 
 Vagrant will provision the machine. If asked for network interface, chose the physical one on your system. Vagrant can be configured to use a fixed private IP address, but in this mode it acts like another machine plugged into your router.
 
-Once you have the command prompt back again (Vagrent will show various status outputs), log on to your new box with
+Once you have the command prompt back again (Vagrant will show various status outputs), log on to your new box with
 
     vagrant ssh
 
@@ -52,6 +52,7 @@ Once the Minecraft server is running, you will need to look for your IP address 
 
 #### Program-specific notes:
 * Vagrant should have given you a private key to log in via ssh. The default password is `vagrant`, but if you are asked for this something may be wrong with your setup. This password can also be used if you lock yourself out of SSH.
+* Access to physical machine files: The folder in which you kept `Vagrantfile` is accessible from the VM, and is mounted at `/vagrant` in there. Files are shared and synced in both directions.
 * If using Visual Studio Code with NVIDIA: graphics oddities may appear when changing focus windows/moving things around. To fix it:
     * NVIDIA Control Panel &rarr; Manage 3D Settings &rarr; Program Settings &rarr; Antialising - FXAA: set to "Off". Then restart VSCode.
 
@@ -90,6 +91,6 @@ Finally, start up the server:
 |Max Minecraft Memory|`minecraft.service`|4G|Observationally, Minecraft is more CPU-intensive than memory. 2-3G is plenty so we are safe here. Make sure this is lower than allocated VM memory|
 |`SERVER_URL`|`minecraft_user_scripts.sh`|https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar|Downloads v1.19.2|
 |Minecraft main port|`server.properties`|25565||
-|RCON port|`server.properties`; `setup_main.sh`|25575|Passing no `-P` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
+|RCON port|`server.properties`|25575|Passing no `-P` argument to `mcrcon` is leveraged multiple places. To change the port, any calls to `mcrcon` must also be modified.|
 |`RCON_PW`|`server.properties`|None|IMPORTANT: Sete this to a secure value during setup.
 |RCON IP|None|`localhost` (127.0.0.1)|See comments above. Again, the default value for `-H` in `mcrcon` is localhost; there is no need to change this|
