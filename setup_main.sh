@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Functions
+write_aliases() {
+    mcrcon_var="export MCRCON_PASS=$2"
+    mcrcon_alias="alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon"
+
+    if [ ! -f "$1" ]; then
+        touch "$1"
+    fi
+    
+    grep -qxF "$mcrcon_alias" "$1" || echo "$mcrcon_alias" >> "$1"
+    grep -qxF "$mcrcon_var" "$1" || echo "$mcrcon_var" >> "$1"
+
+}
+
 printf "\n\n--Welcome to Minecraft Auto Setup--\n\n"
 
 read -p "Would you like to install required packages? [y/N]" pk
@@ -30,8 +44,11 @@ sudo -s -- <<-EOF
 
     echo "rcon.password=$rconpw" >> server.properties
 
-    echo "eval export MCRCON_PASS=$rconpw" > vars
-    echo "eval alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> vars
+    write_aliases "~/.bashrc" "$rconpw"
+    write_aliases "/opt/minecraft/.bashrc" "$rconpw"
+
+    #echo "eval export MCRCON_PASS=$rconpw" > vars
+    #echo "eval alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> vars
 
     cp server.properties /opt/minecraft/server/
     chown minecraft /opt/minecraft/server/server.properties
