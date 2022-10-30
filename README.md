@@ -32,7 +32,7 @@ Once you have the command prompt back again (Vagrent will show various status ou
 
     vagrant ssh
 
-#### Enable firewall
+#### Enable firewall and connecting
 
 Let's limit how we're allowed to connect to our new VM. First, enable it:
 
@@ -47,6 +47,8 @@ This is equivalent to `ufw allow 22/tcp`.
 _If you enable the firewall and reboot_ before opening 22: Don't worry. Go to the VirtualBox GUI, and you can interact with the system directly. From there punch port 22 open and log back in via SSH. May as well open Minecraft's port while we're here:
 
     sudo ufw allow 25565/tcp
+
+Once the Minecraft server is running, you will need to look for your IP address under `eth1`, not `eth0`.
 
 #### Program-specific notes:
 * Vagrant should have given you a private key to log in via ssh. The default password is `vagrant`, but if you are asked for this something may be wrong with your setup. This password can also be used if you lock yourself out of SSH.
