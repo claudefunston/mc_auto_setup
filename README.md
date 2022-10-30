@@ -6,11 +6,11 @@ A rapidly deployable testbed for creating Minecraft servers. There are two compo
 
 With a few clicks, you will be able to connected to a Minecraft instance inside your local machine. Why operate like this? Before deploying Minecraft to your own server, you will likely want to modify settings from the setup here. Because of the disposable nature of the VM, you can make an incremental change to the setup scripts, and run a server install on a fresh machine without replicating any (human) work. 
 
-This concept goes beyond Minecraft; any other configurations to your server can be similarly upgraded on an incremental, repeatedly testable basis. Because changes are made by script, the process is fundamentally self-documenting. No more "I know I had a command to fix that error, what was it?" -- you added it to your script and it's done right every time you spool up a fresh machine.
+This concept goes beyond Minecraft; any other configurations to your server can be similarly upgraded on an incremental, repeatedly testable basis. Because changes are made by script, the process is fundamentally self-documenting. No more "I know I had a command to fix that error, what was it?" &mdash; you added it to your script and it's done right every time you spool up a fresh machine.
 
 ## Setup
 ### Using Vagrant
-If you are bringing your own system, skip ahead to section Minecraft. Otherwise, install the following:
+If you are bringing your own system, you can skip most of this section. Pay attention to the firewall setup, as it will apply to your server as well.
 
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://developer.hashicorp.com/vagrant/downloads)
@@ -20,41 +20,54 @@ Choose the appropriate version for your host platform. This author has only test
 #### Initialize VMs
 From this repository, download _only_ the file `Vagrantfile`. Save it alone in any folder you wish. From your favorite terminal, navigate there:
 
-`cd <PATH_TO_VAGRANTFILE>`
+    cd <PATH_TO_VAGRANTFILE>
 
 Activate the VM by typing
-`vagrant up`
 
-Vagrant will provision the machine. Once you have the command prompt back again (Vagrent will show various status output), log on to your new box with
+    vagrant up
 
-`vagrant ssh`
+Vagrant will provision the machine. If asked for network interface, chose the physical one on your system. Vagrant can be configured to use a fixed private IP address, but in this mode it acts like another machine plugged into your router.
+
+Once you have the command prompt back again (Vagrent will show various status outputs), log on to your new box with
+
+    vagrant ssh
+
+#### Enable firewall
+
+Let's limit how we're allowed to connect to our new VM. First, enable it:
+
+    sudo ufw enable
+
+The firewall won't start untill a reboot &mdash; but if you reboot now, you can't log back in via SSH! Let's open up:
+
+    sudo ufw allow ssh
+
+This is equivalent to `ufw allow 22/tcp`.
+
+_If you enable the firewall and reboot_ before opening 22: Don't worry. Go to the VirtualBox GUI, and you can interact with the system directly. From there punch port 22 open and log back in via SSH. May as well open Minecraft's port while we're here:
+
+    sudo ufw allow 25565/tcp
 
 #### Program-specific notes:
-* Vagrant should have given you a private key to log in via ssh. The default password is `vagrant`, but if you are asked for this something may be wrong with your setup.
+* Vagrant should have given you a private key to log in via ssh. The default password is `vagrant`, but if you are asked for this something may be wrong with your setup. This password can also be used if you lock yourself out of SSH.
 * If using Visual Studio Code with NVIDIA: graphics oddities may appear when changing focus windows/moving things around. To fix it:
-    * NVIDIA Control Panel &rarr; Manage 3D Settings &rarr; Program Settings &rarr; Antialising - FXAA: set to "Off". Then restart VSC.
+    * NVIDIA Control Panel &rarr; Manage 3D Settings &rarr; Program Settings &rarr; Antialising - FXAA: set to "Off". Then restart VSCode.
 
 ### Minecraft
 
 If you are using Vagrant, this repository is already cloned. Otherwise, clone it.
 
-To get Minecraft going, enter
+To run the installer, enter
 
-`cd mc_auto_setup && sudo sh setup_main.sh`
+    cd mc_auto_setup && sudo sh setup_main.sh
 
-Finally, the script has created a file to set an alias and the RCON password: type
+We have a couple of steps to export our environment variables and aliases:
 
-`source vars`
+    source ~/.bash_aliases && source /opt/minecraft/.bash_aliases
 
-This sets an alias for `mcrcon`, and defines the `MCRCON_PASS` based on what you chose.
+Finally, start up the server:
 
-## Operating the Server
-
-Open up a port to the outside world: for security, we are not enabling this in the scripts:
-
-`sudo ufw allow 25565/tcp`
-
-To connect, if you are using Vagrant: use the IP address from the `eth1` interface, not `eth0`. Otherwise connect as usual.
+    sudo systemctl start minecraft
 
 ### Planned Features
 
@@ -62,9 +75,7 @@ To connect, if you are using Vagrant: use the IP address from the `eth1` interfa
     * Note: `minecraft status` does show the previous 18 lines from the console
 * Automated backups
 * SFTP configuration for sharing world files
-* ~~Some redundancy checks on the bash scripts. This would be to rerun scripts without making a new VM~~ Done, +interactivity
-* ~~Consolidate references to RCON password; create environment variable~~ Done
-* ~~Fix aliases!!~~ Aliases are created but do not persist after a reboot 
+
 
 ### Variables
 
