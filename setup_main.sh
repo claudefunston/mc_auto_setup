@@ -4,7 +4,8 @@
 write_aliases() {
 
 # Args:
-#   1: fully-qualified 
+#   1: fully-qualified path to alias file
+#   2: Password for Minecraft's RCON interface
     mcrcon_var="export MCRCON_PASS=$2"
     mcrcon_alias="alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon"
 
@@ -15,7 +16,6 @@ write_aliases() {
     grep -qxF "$mcrcon_alias" "$1" || echo "$mcrcon_alias" >> "$1"
     grep -qxF "$mcrcon_var" "$1" || echo "$mcrcon_var" >> "$1"
 }
-
 
 printf "\n\n--Welcome to Minecraft Auto Setup--\n\n"
 
@@ -40,12 +40,16 @@ Please chose a sufficiently secure value:
 
 " rconpw
 
+grep -v ^rcon.password* server.properties.initial > server.properties
+echo "rcon.password=$MCRCON_PASS" >> server.properties
+
 sudo -s -- <<-EOF
-    cp server.properties.initial server.properties
-    chgrp sudo server.properties
+    chown minecraft server.properties
+    chgrp minecraft server.properties
+
     chmod 660 server.properties
 
-    echo "rcon.password=$rconpw" >> server.properties
+    cp server.properties /opt/minecraft/server/
 EOF
 
 write_aliases ~/.bash_aliases "$rconpw"
