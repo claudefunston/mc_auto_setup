@@ -43,16 +43,16 @@ sudo -s -- <<-EOF
     chmod 660 server.properties
 
     echo "rcon.password=$rconpw" >> server.properties
+EOF
 
-    write_aliases "~/.bashrc" "$rconpw"
-    write_aliases "/opt/minecraft/.bashrc" "$rconpw"
+write_aliases "~/.bashrc" "$rconpw"
+write_aliases "/opt/minecraft/.bashrc" "$rconpw"
 
     #echo "eval export MCRCON_PASS=$rconpw" > vars
     #echo "eval alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> vars
 
-    cp server.properties /opt/minecraft/server/
-    chown minecraft /opt/minecraft/server/server.properties
-EOF
+sudo cp server.properties /opt/minecraft/server/
+chown minecraft /opt/minecraft/server/server.properties
 
 read -p "Would you like to enable and start Minecraft? [y/N]" en
 case $en in [Yy]* )
