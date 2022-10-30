@@ -41,7 +41,7 @@ Please chose a sufficiently secure value:
 " rconpw
 
 grep -v ^rcon.password* server.properties.initial > server.properties
-echo "rcon.password=$MCRCON_PASS" >> server.properties
+echo "rcon.password=$rconpw" >> server.properties
 
 sudo -s -- <<-EOF
     chown minecraft server.properties
