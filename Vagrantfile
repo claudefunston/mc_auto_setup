@@ -11,5 +11,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision "shell", inline: <<-SHELL
     git clone https://github.com/claudefunston/mc_auto_setup
+    sudo chown vagrant /home/vagrant/mc_auto_setup
+    sudo chgrp vagrant /home/vagrant/mc_auto_setup
   SHELL
 end
