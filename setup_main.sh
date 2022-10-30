@@ -11,7 +11,6 @@ write_aliases() {
     
     grep -qxF "$mcrcon_alias" "$1" || echo "$mcrcon_alias" >> "$1"
     grep -qxF "$mcrcon_var" "$1" || echo "$mcrcon_var" >> "$1"
-
 }
 
 printf "\n\n--Welcome to Minecraft Auto Setup--\n\n"
@@ -45,8 +44,8 @@ sudo -s -- <<-EOF
     echo "rcon.password=$rconpw" >> server.properties
 EOF
 
-write_aliases "~/.bashrc" "$rconpw"
-write_aliases "/opt/minecraft/.bashrc" "$rconpw"
+write_aliases ~/.bash_ "$rconpw"
+write_aliases /opt/minecraft/.bash_aliases "$rconpw"
 
     #echo "eval export MCRCON_PASS=$rconpw" > vars
     #echo "eval alias mcrcon=/opt/minecraft/tools/mcrcon/mcrcon" >> vars
