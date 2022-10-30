@@ -44,7 +44,7 @@ sudo -s -- <<-EOF
     echo "rcon.password=$rconpw" >> server.properties
 EOF
 
-write_aliases ~/.bash_ "$rconpw"
+write_aliases ~/.bash "$rconpw"
 write_aliases /opt/minecraft/.bash_aliases "$rconpw"
 
     #echo "eval export MCRCON_PASS=$rconpw" > vars
