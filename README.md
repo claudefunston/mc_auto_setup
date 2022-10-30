@@ -17,7 +17,7 @@ If you are bringing your own system, skip ahead to section Minecraft. Otherwise,
 
 Choose the appropriate version for your host platform. This author has only tested on Windows. Vagrant works with other virtualization software, but there are VB-specific sizing options in this particular configuration.
 
-### Initialize VMs
+#### Initialize VMs
 From this repository, download _only_ the file `Vagrantfile`. Save it alone in any folder you wish. From your favorite terminal, navigate there:
 
 `cd <PATH_TO_VAGRANTFILE>`
@@ -29,7 +29,10 @@ Vagrant will provision the machine. Once you have the command prompt back again 
 
 `vagrant ssh`
 
-If asked, the default password is `vagrant`.
+#### Program-specific notes:
+* Vagrant should have given you a private key to log in via ssh. The default password is `vagrant`, but if you are asked for this something may be wrong with your setup.
+* If using Visual Studio Code with NVIDIA: graphics oddities may appear when changing focus windows/moving things around. To fix it:
+    * NVIDIA Control Panel &rarr; Manage 3D Settings &rarr; Program Settings &rarr; Antialising - FXAA: set to "Off". Then restart VSC.
 
 ### Minecraft
 
