@@ -54,10 +54,7 @@ write_aliases /opt/minecraft/.bash_aliases "$rconpw"
 sudo cp server.properties /opt/minecraft/server/
 chown minecraft /opt/minecraft/server/server.properties
 
-read -p "Would you like to enable and start Minecraft? [y/N]" en
+read -p "Would you like to enable the Minecraft service? [y/N]" en
 case $en in [Yy]* )
-    sudo -s -- <<-EOF
     systemctl enable minecraft
-    systemctl start minecraft
-EOF
 esac
