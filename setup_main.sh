@@ -27,7 +27,7 @@ case $pk in [Yy]* )
     sudo apt install -y openjdk-17-jre-headless; break;;
 esac
 
-useradd -r -m -U -d /opt/minecraft -s /bin/bash minecraft || true
+useradd -rmUd /opt/minecraft -s /bin/bash minecraft || true
 
 sudo cp ./minecraft.service /etc/systemd/system/minecraft.service
 
