@@ -4,6 +4,8 @@ A rapidly deployable testbed for creating Minecraft servers. There are two compo
 * A Vagrant setup file to create recreateable, disposable, and safe Virtual Machines (optional)
 * A series of Bash scripts to set up the Minecraft server environment and system service
 
+TEST PUSH
+
 With a few clicks, you will be able to connected to a Minecraft instance inside your local machine. Why operate like this? Before deploying Minecraft to your own server, you will likely want to modify settings from the setup here. Because of the disposable nature of the VM, you can make an incremental change to the setup scripts, and run a server install on a fresh machine without replicating any (human) work. 
 
 This concept goes beyond Minecraft; any other configurations to your server can be similarly upgraded on an incremental, repeatedly testable basis. Because changes are made by script, the process is fundamentally self-documenting. No more "I know I had a command to fix that error, what was it?" &mdash; you added it to your script and it's done right every time you spool up a fresh machine.
